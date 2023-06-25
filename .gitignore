@@ -52,3 +52,5 @@ include/*
 lib/*
 bin/*
 test/
+src/archiveUtils/zip_lib
+example/
