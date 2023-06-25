@@ -16,23 +16,23 @@ namespace archive_utils
         }
         else
         {
-            for (auto const &p : fs::recursive_directory_iterator(source))
+            for (auto const &fileIter : fs::recursive_directory_iterator(source))
             {
                 if (reporter)
-                    reporter("Packing " + p.path().string());
+                    reporter("Packing " + fileIter.path().string());
 
-                if (fs::is_directory(p))
+                if (fs::is_directory(fileIter))
                 {
-                    fs::path relativePath = fs::relative(p, source);
-                    auto zipArchive = ZipFile::Open(archive.string());
-                    auto entry = zipArchive->CreateEntry(relativePath.string() + "/");
+                    fs::path relativePath = fs::relative(fileIter, source);
+                    ZipArchive::Ptr zipArchive = ZipFile::Open(archive.string());
+                    ZipArchiveEntry::Ptr entry = zipArchive->CreateEntry(relativePath.string() + "/");
                     entry->SetAttributes(ZipArchiveEntry::Attributes::Directory);
                     ZipFile::SaveAndClose(zipArchive, archive.string());
                 }
-                else if (fs::is_regular_file(p))
+                else if (fs::is_regular_file(fileIter))
                 {
-                    fs::path relativePath = fs::relative(p, source);
-                    ZipFile::AddFile(archive.string(), p.path().string(), relativePath.string());
+                    fs::path relativePath = fs::relative(fileIter, source);
+                    ZipFile::AddFile(archive.string(), fileIter.path().string(), relativePath.string());
                 }
             }
         }

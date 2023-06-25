@@ -3,6 +3,8 @@
 #include "zip_lib/Source/ZipLib/ZipArchive.h"
 #include "zip_lib/Source/ZipLib/ZipFile.h"
 
+#include <ZipArchive.h>
+
 #include <fstream>
 
 namespace archive_utils
@@ -20,11 +22,11 @@ namespace archive_utils
     {
         ensureDirectoryExists(destination);
 
-        auto zipArchive = ZipFile::Open(archive.string());
+        ZipArchive::Ptr zipArchive = ZipFile::Open(archive.string());
 
         for (int i = 0; i < zipArchive->GetEntriesCount(); i++)
         {
-            auto entry = zipArchive->GetEntry(i);
+            ZipArchiveEntry::Ptr entry = zipArchive->GetEntry(i);
             if (entry)
             {
                 auto filepath = destination / fs::path{entry->GetFullName()}.relative_path();
@@ -47,7 +49,7 @@ namespace archive_utils
                             reporter("Failed to create target file.");
                     }
 
-                    auto dataStream = entry->GetDecompressionStream();
+                    std::istream *dataStream = entry->GetDecompressionStream();
                     if (dataStream)
                     {
                         destFile << dataStream->rdbuf();
