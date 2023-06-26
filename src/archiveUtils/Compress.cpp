@@ -1,7 +1,7 @@
 #include "Compress.hpp"
 
-#include "zip_lib/Source/ZipLib/ZipArchive.h"
-#include "zip_lib/Source/ZipLib/ZipFile.h"
+#include "zipLib/Source/ZipLib/ZipArchive.h"
+#include "zipLib/Source/ZipLib/ZipFile.h"
 
 namespace archive_utils
 {

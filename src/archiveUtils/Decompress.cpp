@@ -1,10 +1,5 @@
 #include <Decompress.hpp>
 
-#include "zip_lib/Source/ZipLib/ZipArchive.h"
-#include "zip_lib/Source/ZipLib/ZipFile.h"
-
-#include <ZipArchive.h>
-
 #include <fstream>
 
 namespace archive_utils

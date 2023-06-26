@@ -1,5 +1,8 @@
 #pragma once
 
+#include "zipLib/Source/ZipLib/ZipArchive.h"
+#include "zipLib/Source/ZipLib/ZipFile.h"
+
 #include <filesystem>
 #include <functional>
 #include <string_view>
