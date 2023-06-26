@@ -8,8 +8,6 @@ set(SOURCE_FILES
 
 add_library(ArchiveUtils STATIC ${SOURCE_FILES})
 
-find_package(Boost REQUIRED COMPONENTS system filesystem iostreams)
-
 add_custom_target(BuildZipLib ALL 
                    COMMAND ${CMAKE_MAKE_PROGRAM}
                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/zipLib
@@ -25,9 +23,6 @@ set_target_properties(ZipLib PROPERTIES
 add_dependencies(ZipLib BuildZipLib) # So that anyone linking against TheLib causes BuildTheLib to build first
 
 target_link_libraries(ArchiveUtils PRIVATE ZipLib)
-
-#target_link_libraries(ArchiveUtils PRIVATE SubmoduleLib)
-target_link_libraries(ArchiveUtils PRIVATE Boost::system Boost::filesystem Boost::iostreams)
 
 #file(COPY ${ZIPLIB_LIBRARY} DESTINATION ${LIB_DIR})
 
