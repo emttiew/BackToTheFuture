@@ -38,4 +38,9 @@ This is a simple compress / decompress application.
 ```
 #### Release
 
-You can download prebuild binary from Releases
+You can download prebuild binary wiht .so zip library from Releases
+
+```bash
+❯ chmod +x run_binary.sh
+❯ ./run_binary.sh
+```
