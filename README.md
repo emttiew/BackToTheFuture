@@ -26,13 +26,16 @@ This is a simple compress / decompress application.
 ❯ make && make install
 ```
 
-### Run App
+#### Run App
 ```bash
 ❯ cd bin/
 ❯ ./BackToTheFuture c|compress|d|decompress <source_path> <archive_path> reporter(optional)
 ```
-### Run Tests
+#### Run Tests
 ```bash
 ❯ cd bin/
 ❯ ./backToTheFutureTests
 ```
+#### Release
+
+You can download prebuild binary from Releases
